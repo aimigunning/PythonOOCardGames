@@ -74,7 +74,7 @@ class PlayingCard:
     def is_playing_a_card(self, hand, card_to_play):
         played = False
         current_size = len(hand)
-        play_a_card(hand, card_to_play)
+        self.play_a_card(hand, card_to_play)
         if current_size > len(hand):
             played = True
         return played
@@ -138,12 +138,12 @@ class PlayingCard:
     # Description: For a hand of playing cards it is sorted. It is converted to hexadecimal numbers, sorted and converted
     # back to face cards
     def sort_hand(self, hand):
-        convert_faces_to_numbers(hand)
+        self.convert_faces_to_numbers(hand)
         hand.sort()
-        convert_numbers_to_faces(hand)
+        self.convert_numbers_to_faces(hand)
 
     # Method: sort_hands
     # Description: For a set of hands of cards for a number of players, each hand is sorted
     def sort_hands(self, hands):
         for hand in hands:
-            sort_hand(hand)
+            self.sort_hand(hand)
