@@ -6,6 +6,7 @@ from BlackJack import *
 
 class MyTestCases(unittest.TestCase):
     playingCard = PlayingCard()
+    blackJack = BlackJack()
 
     def test_standardDeckLengthIs52(self):
         deck = self.playingCard.generate_deck()
@@ -83,6 +84,10 @@ class MyTestCases(unittest.TestCase):
         hands = [["SQ","SJ"],["HA", "CQ"]]
         self.playingCard.sort_hands(hands)
         self.assertNotEqual(originalHands,hands)
+
+    def test_scoreHand(self):
+        hand = ["HA","CQ"]
+        self.assertEqual(21,self.blackJack.score_hand(hand))
 
 
 if __name__ == '__main__':
