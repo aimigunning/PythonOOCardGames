@@ -92,6 +92,7 @@ class MyTestCases(unittest.TestCase):
     # blackjack specific unit tests
     def test_getNumberOfPlayers(self):
         self.testInput.setTestIntegerValues([1,2,3])
+        # What is the point in setting up a list if I'm only retrieving one value for the test?
         self.blackJack.set_input(TestInput())
         self.assertEqual(3,self.blackJack.get_number_of_players())
 
@@ -105,6 +106,7 @@ class MyTestCases(unittest.TestCase):
 
     def test_validDealInput(self):
        self.testInput.setTestStringValues(["B","S","d"])
+       #What is the point in setting up a list if I'm only retrieving one value for the test?
        self.blackJack.set_input(TestInput())
        #Is valid_deal_input() running using the test values here?
        self.assertEqual("D",self.blackJack.valid_deal_input())
