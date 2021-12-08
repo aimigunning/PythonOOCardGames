@@ -20,6 +20,9 @@ class BlackJack:
 
     playing_card = PlayingCard()
 
+    def get_number_of_players(self):
+        number_of_players = self.gameInput.getInputInteger("Please enter the number of players, max is six")
+        return number_of_players
 
     def score_hand(self, hand):
         """Score an individual hand of playing cards. We add each card score to a total. All face cards King, Queen
@@ -136,7 +139,7 @@ class BlackJack:
 
     def main(self):
         """"Get the number of players, generate the deck of cards and work out the computer players risk."""
-        number_of_players = self.gameInput.getInputInteger("Please enter the number of players, max is six")
+        number_of_players = self.get_number_of_players()
         deck = self.playing_card.generate_deck()
         deck = self.playing_card.shuffle_cards(deck)
         hands = self.playing_card.deal_cards(deck, 2, number_of_players)
