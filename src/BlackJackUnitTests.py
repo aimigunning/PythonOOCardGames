@@ -2,12 +2,15 @@ import unittest
 
 from PlayingCard import *
 from BlackJack import *
+from TestInput import TestInput
 
 
 class MyTestCases(unittest.TestCase):
     playingCard = PlayingCard()
     blackJack = BlackJack()
+    testInput = TestInput()
 
+    #PlayingCard unit tests
     def test_standardDeckLengthIs52(self):
         deck = self.playingCard.generate_deck()
         self.assertEqual(52,len(deck))
@@ -86,8 +89,14 @@ class MyTestCases(unittest.TestCase):
         self.assertNotEqual(originalHands,hands)
 
     def test_scoreHand(self):
-        hand = ["HA","CQ"]
+        self.testInput.setTestStringValues(["HA","CQ"])
+        hand = []
+        hand.append(self.testInput.getInputString("blah"))
+        hand.append(self.testInput.getInputString("blah"))
         self.assertEqual(21,self.blackJack.score_hand(hand))
+
+    #blackjack specific unit tests
+    #def test_validDealInput(self):
 
 
 if __name__ == '__main__':

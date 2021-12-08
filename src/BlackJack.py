@@ -1,5 +1,7 @@
 import random
 from PlayingCard import PlayingCard
+from ConsoleInput import ConsoleInput
+from ConsoleOutput import ConsoleOutput
 
 class BlackJack:
 
@@ -9,8 +11,15 @@ class BlackJack:
     max_ace_score = 11
     min_ace_score = 1
     good_number_of_cards = 5
+    gameInput = None
+    output = ConsoleOutput()
+
+    #adding a setter for the input
+    def set_input(self,gameInput):
+        self.gameInput = gameInput
 
     playing_card = PlayingCard()
+
 
     def score_hand(self, hand):
         """Score an individual hand of playing cards. We add each card score to a total. All face cards King, Queen
@@ -48,9 +57,9 @@ class BlackJack:
      returns the answer in upper case. A while loop is used to prompt the user till the enter a valid response"""
         """Function to get a valid user input for the deal_to_user function"""
         allowed_answers = ["D", "S"]
-        answer = input("Please select (D)raw or (S)tick: ")
+        answer = self.gameInput.getInputString("Please select (D)raw or (S)tick: ")
         while answer.upper() not in allowed_answers:
-            answer = input("That is not a valid input. Please select (D)raw or (S)tick: ")
+            answer = self.gameInput.getInputString("That is not a valid input. Please select (D)raw or (S)tick: ")
         return answer.upper()
 
     def deal_to_user(self, deck, hand):
@@ -59,12 +68,14 @@ class BlackJack:
      and are bust. In this case we move on."""
         answer = "D"
         while answer == "D":
-            print("Your hand is", hand)
+            self.output.display("Your hand is")
+            self.output.display(hand)
             answer = self.valid_deal_input()
             if answer == "D":
                 if not self.deal_to_player(deck, hand):
                     answer = "F"
-                    print("Sorry you have gone over the score and are bust", hand)
+                    self.output.display("Sorry you have gone over the score and are bust")
+                    self.output.display(hand)
 
 
     def find_winner(self, hands):
@@ -117,15 +128,15 @@ class BlackJack:
         self.deal_to_computer(deck, hands, computer_risk)
         players = self.find_winner(hands)
         if len(players) == 1:
-            print("Player " + str(players[0]) + " is the winner")
+            self.output.display("Player " + str(players[0]) + " is the winner")
         else:
             for player in players:
-                print("Player " + str(player) + " draw")
-        print(hands)
+                self.output.display("Player " + str(player) + " draw")
+        self.output.display(hands)
 
     def main(self):
         """"Get the number of players, generate the deck of cards and work out the computer players risk."""
-        number_of_players = int(input("Please enter the number of players, max is six"))
+        number_of_players = self.gameInput.getInputInteger("Please enter the number of players, max is six")
         deck = self.playing_card.generate_deck()
         deck = self.playing_card.shuffle_cards(deck)
         hands = self.playing_card.deal_cards(deck, 2, number_of_players)
@@ -135,6 +146,7 @@ class BlackJack:
 # This allows the main to be called only when you run this file.
 if __name__ == "__main__":
     blackjack = BlackJack()
+    blackjack.set_input(ConsoleInput())
     blackjack.main()
 
 
