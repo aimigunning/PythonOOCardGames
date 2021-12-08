@@ -11,7 +11,7 @@ class TestInput(Input):
 
     def setTestIntegerValues(self,newTestIntegerValues):
         for item in newTestIntegerValues:
-            self.testIntegerValues.append(newTestIntegerValues)
+            self.testIntegerValues.append(item)
 
     def getInputString(self,message):
         return self.testStringValues.pop()

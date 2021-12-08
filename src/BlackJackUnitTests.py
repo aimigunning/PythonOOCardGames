@@ -9,7 +9,7 @@ from ConsoleInput import ConsoleInput
 class MyTestCases(unittest.TestCase):
     playingCard = PlayingCard()
     blackJack = BlackJack()
-    testInput = ConsoleInput() #TestInput()
+    testInput = TestInput() #ConsoleInput()
 
     #PlayingCard unit tests
     def test_standardDeckLengthIs52(self):
@@ -90,14 +90,26 @@ class MyTestCases(unittest.TestCase):
         self.assertNotEqual(originalHands,hands)
 
     # blackjack specific unit tests
-    def test_scoreHand(self):
-        #self.testInput.setTestStringValues(["HA","CQ"])
-        hand = []
-        hand.append(self.testInput.getInputString("Add a card to test hand: "))
-        hand.append(self.testInput.getInputString("Add another card to test hand: "))
-        self.assertEqual(21,self.blackJack.score_hand(hand))
+    def test_getNumberOfPlayers(self):
+        self.testInput.setTestIntegerValues([1,2,3])
+        self.blackJack.set_input(TestInput())
+        self.assertEqual(3,self.blackJack.get_number_of_players())
 
-    #def test_validDealInput(self):
+    def test_scoreHand(self):
+        self.testInput.setTestStringValues(["HA","CQ"])
+        #alternative way to read from console for test input values to be used
+        #hand = []
+        #hand.append(self.testInput.getInputString("Add a card to test hand: "))
+        #hand.append(self.testInput.getInputString("Add another card to test hand: "))
+        self.assertEqual(21,self.blackJack.score_hand(self.testInput.testStringValues))
+
+    def test_validDealInput(self):
+       self.testInput.setTestStringValues(["B","S","d"])
+       self.blackJack.set_input(TestInput())
+       #Is valid_deal_input() running using the test values here?
+       self.assertEqual("D",self.blackJack.valid_deal_input())
+
+
 
 
 if __name__ == '__main__':
