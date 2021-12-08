@@ -3,12 +3,13 @@ import unittest
 from PlayingCard import *
 from BlackJack import *
 from TestInput import TestInput
+from ConsoleInput import ConsoleInput
 
 
 class MyTestCases(unittest.TestCase):
     playingCard = PlayingCard()
     blackJack = BlackJack()
-    testInput = TestInput()
+    testInput = ConsoleInput() #TestInput()
 
     #PlayingCard unit tests
     def test_standardDeckLengthIs52(self):
@@ -88,14 +89,14 @@ class MyTestCases(unittest.TestCase):
         self.playingCard.sort_hands(hands)
         self.assertNotEqual(originalHands,hands)
 
+    # blackjack specific unit tests
     def test_scoreHand(self):
-        self.testInput.setTestStringValues(["HA","CQ"])
+        #self.testInput.setTestStringValues(["HA","CQ"])
         hand = []
-        hand.append(self.testInput.getInputString("blah"))
-        hand.append(self.testInput.getInputString("blah"))
+        hand.append(self.testInput.getInputString("Add a card to test hand: "))
+        hand.append(self.testInput.getInputString("Add another card to test hand: "))
         self.assertEqual(21,self.blackJack.score_hand(hand))
 
-    #blackjack specific unit tests
     #def test_validDealInput(self):
 
 
