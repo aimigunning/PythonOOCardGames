@@ -3,13 +3,14 @@ import unittest
 from PlayingCard import *
 from BlackJack import *
 from TestInput import TestInput
-from ConsoleInput import ConsoleInput
+from TestOutput import TestOutput
 
 
 class MyTestCases(unittest.TestCase):
     playingCard = PlayingCard()
     blackJack = BlackJack()
-    testInput = TestInput() #ConsoleInput()
+    testInput = TestInput()
+    testOutput = TestOutput()
 
     #PlayingCard unit tests
     def test_standardDeckLengthIs52(self):
@@ -98,19 +99,24 @@ class MyTestCases(unittest.TestCase):
 
     def test_scoreHand(self):
         self.testInput.setTestStringValues(["HA","CQ"])
-        #alternative way to read from console for test input values to be used
-        #hand = []
-        #hand.append(self.testInput.getInputString("Add a card to test hand: "))
-        #hand.append(self.testInput.getInputString("Add another card to test hand: "))
-        self.assertEqual(21,self.blackJack.score_hand(self.testInput.testStringValues))
+        hand = self.testInput.testStringValues
+        self.assertEqual(21,self.blackJack.score_hand(hand))
 
     def test_validDealInput(self):
        self.testInput.setTestStringValues(["B","S","d"])
        #What is the point in setting up a list if I'm only retrieving one value for the test?
        self.blackJack.set_input(TestInput())
-       #Is valid_deal_input() running using the test values here?
        self.assertEqual("D",self.blackJack.valid_deal_input())
 
+#    def test_dealToUser(self):
+#        self.blackJack.set_input(TestInput())
+#        self.blackJack.set_output(TestOutput())
+#        self.testInput.setTestStringValues(["S","S"])
+#        deck = self.playingCard.generate_deck()
+#        hand = ["HA","CQ"]
+ #       how can I capture the output from the method? The method doesn't return anything so really not sure
+ #       self.blackJack.deal_to_user(deck,hand)
+ #       self.assertEqual("Your hand is",self.testOutput.testOutputValues)
 
 
 
