@@ -1,4 +1,6 @@
-class ConsoleOutput:
+from Output import Output
 
-    def display(self, message):
-        print(message)
+class ConsoleOutput(Output):
+
+    def getOutputValue(self, outputMessage):
+        print(outputMessage)
