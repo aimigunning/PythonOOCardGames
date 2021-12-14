@@ -14,8 +14,8 @@ class TestInput(Input):
             self.testIntegerValues.append(item)
 
     def getInputString(self,message):
-        return self.testStringValues.pop()
+        return self.testStringValues.pop(0)
 
     def getInputInteger(self,message):
-        return self.testIntegerValues.pop()
+        return self.testIntegerValues.pop(0)
 

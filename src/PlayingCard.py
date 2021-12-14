@@ -26,9 +26,9 @@ class PlayingCard:
     # Description: An Italian set of cards Tertine can be only 40 cards or 52. The small set has no "8", "9" or "10". It
     # still has ace to seven and jack, queen and king.
     def trentine_small(self):
-        faces.remove("8")
-        faces.remove("9")
-        faces.remove("10")
+        self.faces.remove("8")
+        self.faces.remove("9")
+        self.faces.remove("10")
 
     # Function: deal_a_card
     # Description: Remove a card from a deck or hand of cards and return the card.

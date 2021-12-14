@@ -3,9 +3,8 @@ from Output import Output
 class TestOutput(Output):
     testOutputValues = []
 
-    def setOutputValue(self, outputMessage):
-        for item in outputMessage:
-            self.testOutputValues.append(item)
+    def putOutputValue(self, outputMessage):
+        self.testOutputValues.append(outputMessage)
 
-    def getOutputValue(self, outputMessage):
-        return self.testOutputValues.pop()
+    def getTestOutputValues(self):
+        return self.testOutputValues

@@ -75,14 +75,14 @@ class BlackJack:
      and are bust. In this case we move on."""
         answer = "D"
         while answer == "D":
-            self.output.getOutputValue("Your hand is")
-            self.output.getOutputValue(hand)
+            self.output.putOutputValue("Your hand is")
+            self.output.putOutputValue(hand)
             answer = self.valid_deal_input()
             if answer == "D":
                 if not self.deal_to_player(deck, hand):
                     answer = "F"
-                    self.output.getOutputValue("Sorry you have gone over the score and are bust")
-                    self.output.getOutputValue(hand)
+                    self.output.putOutputValue("Sorry you have gone over the score and are bust")
+                    self.output.putOutputValue(hand)
 
 
     def find_winner(self, hands):
@@ -135,11 +135,11 @@ class BlackJack:
         self.deal_to_computer(deck, hands, computer_risk)
         players = self.find_winner(hands)
         if len(players) == 1:
-            self.output.getOutputValue("Player " + str(players[0]) + " is the winner")
+            self.output.putOutputValue("Player " + str(players[0]) + " is the winner")
         else:
             for player in players:
-                self.output.getOutputValue("Player " + str(player) + " draw")
-        self.output.getOutputValue(hands)
+                self.output.putOutputValue("Player " + str(player) + " draw")
+        self.output.putOutputValue(hands)
 
     def main(self):
         """"Get the number of players, generate the deck of cards and work out the computer players risk."""
